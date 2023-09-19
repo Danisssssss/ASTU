@@ -37,12 +37,52 @@ int main() { // обычный код на C++
 
     // Вставка ассемблерного кода для вычисления Y
     __asm {
-        mov eax, a; // Загрузка значения переменной a в регистр eax
-        mov ebx, b; // Загрузка значения переменной b в регистр ebx
-        mov ecx, c; // Загрузка значения переменной c в регистр ecx
+    ; Вычисление первого числителя (ac - ab)
+    mov eax, a     ; Загрузка a в eax
+    mov ebx, c     ; Загрузка c в ebx
+    imul eax, ebx  ; Умножение eax на ebx (a * c)
+    mov edx, a     ; Загрузка a в edx
+    mov ebx, b     ; Загрузка b в ebx
+    imul edx, ebx  ; Умножение edx на ebx (a * b)
+    sub eax, edx   ; Вычитание edx из eax (ac - ab)
+    mov chisl1, eax ; Сохранение результата в chisl1
 
-    }
+    ; Вычисление первого знаменателя (b^2 - c^2)
+    mov eax, b     ; Загрузка b в eax
+    imul eax, b     ; Умножение eax на b (b^2)
+    mov ebx, c     ; Загрузка c в ebx
+    imul ebx, c     ; Умножение ebx на c (c^2)
+    sub eax, ebx   ; Вычитание ebx из eax (b^2 - c^2)
+    mov zn1, eax   ; Сохранение результата в zn1
 
+    ; Вычисление второго числителя (b^2 + ab)
+    mov eax, b     ; Загрузка b в eax
+    imul eax, b     ; Умножение eax на b (b^2)
+    mov ebx, a     ; Загрузка a в ebx
+    imul ebx, b     ; Умножение ebx на b (ab)
+    add eax, ebx   ; Сложение ebx с eax (b^2 + ab)
+    mov chisl2, eax ; Сохранение результата в chisl2
+
+    ; Вычисление второго знаменателя (3a^2 - 3ab)
+    mov eax, a     ; Загрузка a в eax
+    imul eax, a     ; Умножение eax на a (a^2)
+    imul eax, 3     ; Умножение eax на 3 (3a^2)
+    mov ebx, a     ; Загрузка a в ebx
+    imul ebx, b     ; Умножение ebx на b (ab)
+    imul ebx, 3     ; Умножение ebx на 3 (3ab)
+    sub eax, ebx   ; Вычитание ebx из eax (3a^2 - 3ab)
+    mov zn2, eax   ; Сохранение результата в zn2
+
+    ; Вычисление результата (chisl1 / zn1 + chisl2 / zn2)
+    mov eax, chisl1 ; Загрузка первого числителя в eax
+    cdq             ; Знаковое расширение edx для деления
+    idiv zn1        ; Деление eax на zn1
+    mov ebx, chisl2 ; Загрузка второго числителя в ebx
+    cdq             ; Знаковое расширение edx для деления
+    idiv zn2        ; Деление ebx на zn2
+    add eax, ebx    ; Сложение результатов
+    mov resa, eax   ; Сохранение результата в resa
+}
 
     return 0; // Завершение программы и возвращение нулевого значения
 }
