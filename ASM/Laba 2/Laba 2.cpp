@@ -33,8 +33,61 @@ int main() { // обычный код на C++
     
     // Вставка ассемблерного кода для вычисления Y
     __asm {
-
+        // Вычисление a^2, b^2 и c^2
+        mov eax, a
+        imul eax, a
+        mov a2, eax
+    
+        mov ebx, b
+        imul ebx, b
+        mov b2, ebx
+    
+        mov ecx, c
+        imul ecx, c
+        mov c2, ecx
+    
+        // Вычисление a*c и a*b
+        mov eax, a
+        imul eax, c
+        mov ac, eax
+    
+        mov ebx, a
+        imul ebx, b
+        mov ab, ebx
+    
+        // Вычисление числителя и знаменателя первой дроби: (ac - ab) / (b^2 - c^2)
+        sub eax, ebx
+        mov chisl1, eax
+    
+        sub b2, c2
+        mov zn1, b2
+    
+        // Вычисление числителя и знаменателя второй дроби: (b^2 + ab) / (3a^2 - 3ab)
+        add b2, ebx
+        mov chisl2, b2
+    
+        mov edx, 3
+        imul edx, a2
+    
+        mov ebx, 3
+        imul ebx, ab
+    
+        sub edx, ebx
+        mov zn2, edx
+    
+        // Вычисление итогового результата
+        mov eax, chisl1
+        imul eax, zn2
+    
+        mov ebx, chisl2
+        imul ebx, zn1
+    
+        add eax, ebx
+        mov resa, eax
     }
+
+    // Вывод результата на экран
+    cout << "Результат на ассемблере: " << resa << endl;
 
 
     return 0; // Завершение программы и возвращение нулевого значения
