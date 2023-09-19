@@ -1,4 +1,4 @@
-#include <iostream> // подключаем библиотеку с функциями ввода-вывода (printf, system)
+﻿#include <iostream> // подключаем библиотеку с функциями ввода-вывода (printf, system)
 using namespace std; // используем пространство имен std
 
 int main() { // обычный код на C++
