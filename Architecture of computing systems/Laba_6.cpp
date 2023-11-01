@@ -33,7 +33,7 @@ void FullBranch(double x, double y)
 		fsin // st(0) = sin(x)
 			fld x // st(0) = x, st(1) = sin(x)
 			fmul // st(0) = x * sin(x)
-			jmp finish		// переход к финишу
+			jmp finish // переход к финишу
 
 			X_Greater_4 :// x > 2
 		fld three // st(0) = 3, st(1) = x
@@ -152,7 +152,7 @@ void UnfullBranch(double x, double y)
 
 int main()
 {
-	setlocale(LC_ALL, "Russian");	// установка русского алфавита
+	setlocale(LC_ALL, "Russian"); // установка русского алфавита
 	// если x < -5, то y = 2/x
 	// если -5 <= x < 2, то y = x * sin(x)
 	// если 2 <= x < 3, то y = (x + 10) / (2 + x * x)
@@ -173,7 +173,8 @@ int main()
 
 	cout << "Яхьяев Данис. Лабораторная работа № 11-12. Вариант №18(3)." << endl;
 
-	cout << "Введите способ решения:\n1.Полное ветвление\n2.Краткая форма ветвления\n\nВвод: ";
+	cout << "Введите способ решения:" << endl << "1.Полное ветвление" << 
+		endl << "2.Краткая форма ветвления" << endl << endl << "Ввод: ";
 	cin >> choice;
 
 	if (cin.good()) {
