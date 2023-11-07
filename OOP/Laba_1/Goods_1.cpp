@@ -1,29 +1,29 @@
 #include <Windows.h>
 #include <iostream>
 #include <stdexcept>
-#include <iomanip> // Добавляем для setprecision
-#include <sstream> // Добавляем для ostringstream
+#include <iomanip> // Р”РѕР±Р°РІР»СЏРµРј РґР»СЏ setprecision
+#include <sstream> // Р”РѕР±Р°РІР»СЏРµРј РґР»СЏ ostringstream
 #include <cassert>
 
 #pragma pack(1)
 
 /*
-* 1.	Создать класс Goods (товар). В классе должны быть представлены поля: наименование товара, цена товара, количество единиц товара, процент скидки. Реализовать методы, изменения цены товара, изменения количества товара (увеличения и уменьшения), вычисления стоимости товара, вычисление скидки и вычисление стоимости со скидкой. Реализовать методы сравнения по цене.
+* 1.	РЎРѕР·РґР°С‚СЊ РєР»Р°СЃСЃ Goods (С‚РѕРІР°СЂ). Р’ РєР»Р°СЃСЃРµ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅС‹ РїРѕР»СЏ: РЅР°РёРјРµРЅРѕРІР°РЅРёРµ С‚РѕРІР°СЂР°, С†РµРЅР° С‚РѕРІР°СЂР°, РєРѕР»РёС‡РµСЃС‚РІРѕ РµРґРёРЅРёС† С‚РѕРІР°СЂР°, РїСЂРѕС†РµРЅС‚ СЃРєРёРґРєРё. Р РµР°Р»РёР·РѕРІР°С‚СЊ РјРµС‚РѕРґС‹, РёР·РјРµРЅРµРЅРёСЏ С†РµРЅС‹ С‚РѕРІР°СЂР°, РёР·РјРµРЅРµРЅРёСЏ РєРѕР»РёС‡РµСЃС‚РІР° С‚РѕРІР°СЂР° (СѓРІРµР»РёС‡РµРЅРёСЏ Рё СѓРјРµРЅСЊС€РµРЅРёСЏ), РІС‹С‡РёСЃР»РµРЅРёСЏ СЃС‚РѕРёРјРѕСЃС‚Рё С‚РѕРІР°СЂР°, РІС‹С‡РёСЃР»РµРЅРёРµ СЃРєРёРґРєРё Рё РІС‹С‡РёСЃР»РµРЅРёРµ СЃС‚РѕРёРјРѕСЃС‚Рё СЃРѕ СЃРєРёРґРєРѕР№. Р РµР°Р»РёР·РѕРІР°С‚СЊ РјРµС‚РѕРґС‹ СЃСЂР°РІРЅРµРЅРёСЏ РїРѕ С†РµРЅРµ.
 */
 
 using namespace std;
 
 class Goods {
 private:
-    string name; // наименование товара
-    double price; // цена товара
-    int count; // количество единиц товара
-    double discount; // процент скидки
+    string name; // РЅР°РёРјРµРЅРѕРІР°РЅРёРµ С‚РѕРІР°СЂР°
+    double price; // С†РµРЅР° С‚РѕРІР°СЂР°
+    int count; // РєРѕР»РёС‡РµСЃС‚РІРѕ РµРґРёРЅРёС† С‚РѕРІР°СЂР°
+    double discount; // РїСЂРѕС†РµРЅС‚ СЃРєРёРґРєРё
 public:
-    // Метод инициализации
+    // РњРµС‚РѕРґ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
     void Init(const string& name, double price, int count, double discount) {
-        if (price < 0 || count < 0 || discount < 0) { // проверка на корректность
-            throw invalid_argument("Некорректные данные!");
+        if (price < 0 || count < 0 || discount < 0) { // РїСЂРѕРІРµСЂРєР° РЅР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ
+            throw invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ!");
         }
         this->name = name;
         this->price = price;
@@ -31,7 +31,7 @@ public:
         this->discount = discount;
     }
 
-    // Геттеры
+    // Р“РµС‚С‚РµСЂС‹
     string GetName() const noexcept {
         return name;
     }
@@ -48,7 +48,7 @@ public:
         return discount;
     }
 
-    // Сеттеры
+    // РЎРµС‚С‚РµСЂС‹
     void SetName(const string& newName) {
         name = newName;
     }
@@ -65,32 +65,32 @@ public:
         discount = newDiscount;
     }
 
-    // Метод изменения цены товара
+    // РњРµС‚РѕРґ РёР·РјРµРЅРµРЅРёСЏ С†РµРЅС‹ С‚РѕРІР°СЂР°
     void changePrice(double delta) {
         SetPrice(price + delta);
     }
 
-    // Метод изменения количества товара
+    // РњРµС‚РѕРґ РёР·РјРµРЅРµРЅРёСЏ РєРѕР»РёС‡РµСЃС‚РІР° С‚РѕРІР°СЂР°
     void changeCount(int delta) {
         SetCount(count + delta);
     }
 
-    // Метод подсчета стоимости товара без скидки
+    // РњРµС‚РѕРґ РїРѕРґСЃС‡РµС‚Р° СЃС‚РѕРёРјРѕСЃС‚Рё С‚РѕРІР°СЂР° Р±РµР· СЃРєРёРґРєРё
     double CalculateCost() const {
         return (price * count);
     }
 
-    // Метод для вычисления скидки
+    // РњРµС‚РѕРґ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ СЃРєРёРґРєРё
     double CalculateDiscount() const {
         return (price * count * discount) / 100.0;
     }
 
-    // Метод стоимости товара со скидкой
+    // РњРµС‚РѕРґ СЃС‚РѕРёРјРѕСЃС‚Рё С‚РѕРІР°СЂР° СЃРѕ СЃРєРёРґРєРѕР№
     double CalculateCostWithDiscount() const {
         return (CalculateCost() - CalculateDiscount());
     }
 
-    // Методы сравнения товаров по цене
+    // РњРµС‚РѕРґС‹ СЃСЂР°РІРЅРµРЅРёСЏ С‚РѕРІР°СЂРѕРІ РїРѕ С†РµРЅРµ
     bool operator<(const Goods& other) const {
         return price < other.price;
     }
@@ -103,12 +103,12 @@ public:
         return price == other.price;
     }
 
-    // Метод преобразования в строку
+    // РњРµС‚РѕРґ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РІ СЃС‚СЂРѕРєСѓ
     string toString() const {
         ostringstream result;
         result << name << "\n";
 
-        // Устанавливаем желаемое количество знаков после запятой (2)
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р¶РµР»Р°РµРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№ (2)
         result << fixed << setprecision(2) << price << "\n";
         result << count << "\n";
         result << fixed << setprecision(2) << discount << "\n";
@@ -117,19 +117,19 @@ public:
     }
 };
 
-// Метод ввода с клавиатуры
+// РњРµС‚РѕРґ РІРІРѕРґР° СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 Goods Read() {
     string name;
     double price;
     int count;
     double discount;
-    cout << "\nВведите наименование товара: ";
+    cout << "\nР’РІРµРґРёС‚Рµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ С‚РѕРІР°СЂР°: ";
     cin >> name;
-    cout << "Введите цену товара (р): ";
+    cout << "Р’РІРµРґРёС‚Рµ С†РµРЅСѓ С‚РѕРІР°СЂР° (СЂ): ";
     cin >> price;
-    cout << "Введите количество товара (шт): ";
+    cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ С‚РѕРІР°СЂР° (С€С‚): ";
     cin >> count;
-    cout << "Введите скидку товара (%): ";
+    cout << "Р’РІРµРґРёС‚Рµ СЃРєРёРґРєСѓ С‚РѕРІР°СЂР° (%): ";
     cin >> discount;
     Goods goods;
     goods.Init(name, price, count, discount);
@@ -139,12 +139,12 @@ Goods Read() {
 void DisplayCost(const Goods& item) noexcept {
     cout << endl;
     cout << item.GetName() << endl;
-    cout << "Цена без скидки: " << item.CalculateCost() << " р." << endl;
-    cout << "Цена со скидкой: " << item.CalculateCostWithDiscount() << " р." << endl;
-    cout << "Скидка составила: " << item.CalculateDiscount() << " р." << endl;
+    cout << "Р¦РµРЅР° Р±РµР· СЃРєРёРґРєРё: " << item.CalculateCost() << " СЂ." << endl;
+    cout << "Р¦РµРЅР° СЃРѕ СЃРєРёРґРєРѕР№: " << item.CalculateCostWithDiscount() << " СЂ." << endl;
+    cout << "РЎРєРёРґРєР° СЃРѕСЃС‚Р°РІРёР»Р°: " << item.CalculateDiscount() << " СЂ." << endl;
 }
 
-// Метод вывода на экран
+// РњРµС‚РѕРґ РІС‹РІРѕРґР° РЅР° СЌРєСЂР°РЅ
 void Display(const Goods& item) noexcept {
     cout << endl;
     cout << item.toString();
@@ -154,68 +154,68 @@ void Display(const Goods& item) noexcept {
 
 int main() {
     SetConsoleOutputCP(1251);
-    cout << "Яхьяев Данис ДИНРБ-21/2" << endl;
-    cout << "Вариант 1" << endl;
+    cout << "РЇС…СЊСЏРµРІ Р”Р°РЅРёСЃ Р”РРќР Р‘-21/2" << endl;
+    cout << "Р’Р°СЂРёР°РЅС‚ 1" << endl;
     cout << "==========================" << endl;
 
     try {
         Goods item1;
 
-        item1.Init("Item1", 20000.0, 15, 12.5); // Инициализируем методом Init
-        Display(item1); // Используем метод Display
+        item1.Init("Item1", 20000.0, 15, 12.5); // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РјРµС‚РѕРґРѕРј Init
+        Display(item1); // РСЃРїРѕР»СЊР·СѓРµРј РјРµС‚РѕРґ Display
 
-        // Проверка с использованием assert
+        // РџСЂРѕРІРµСЂРєР° СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј assert
         assert(item1.GetName() == "Item1");
         assert(item1.GetPrice() == 20000.0);
         assert(item1.GetCount() == 15);
         assert(item1.GetDiscount() == 12.5);
 
-        // Проверка методов вычисления стоимости и скидки:
-        // Проверка метода CalculateCost
+        // РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґРѕРІ РІС‹С‡РёСЃР»РµРЅРёСЏ СЃС‚РѕРёРјРѕСЃС‚Рё Рё СЃРєРёРґРєРё:
+        // РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґР° CalculateCost
         assert((item1.CalculateCost() - 300000.0) < 0.0001);
 
-        // Проверка метода CalculateDiscount
+        // РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґР° CalculateDiscount
         assert((item1.CalculateDiscount() - 37500.0) < 0.0001);
 
-        // Проверка метода CalculateCostWithDiscount
+        // РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґР° CalculateCostWithDiscount
         assert((item1.CalculateCostWithDiscount() - 262500.0) < 0.0001);
 
 
 
-        // Создаем второй объект
+        // РЎРѕР·РґР°РµРј РІС‚РѕСЂРѕР№ РѕР±СЉРµРєС‚
         Goods item2;
         item2.Init("Item2", 25000.0, 10, 10.0);
-        Display(item2); // Используем метод Display
+        Display(item2); // РСЃРїРѕР»СЊР·СѓРµРј РјРµС‚РѕРґ Display
 
-        // Проверка с использованием assert
+        // РџСЂРѕРІРµСЂРєР° СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј assert
         assert(item2.GetName() == "Item2");
         assert(item2.GetPrice() == 25000.0);
         assert(item2.GetCount() == 10);
         assert(item2.GetDiscount() == 10.0);
 
-        // Проверка методов вычисления стоимости и скидки:
-        // Проверка метода CalculateCost
+        // РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґРѕРІ РІС‹С‡РёСЃР»РµРЅРёСЏ СЃС‚РѕРёРјРѕСЃС‚Рё Рё СЃРєРёРґРєРё:
+        // РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґР° CalculateCost
         assert(item2.CalculateCost() == 250000.0);
 
-        // Проверка метода CalculateDiscount
+        // РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґР° CalculateDiscount
         assert(item2.CalculateDiscount() == 25000.0);
 
-        // Проверка метода CalculateCostWithDiscount
+        // РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґР° CalculateCostWithDiscount
         assert(item2.CalculateCostWithDiscount() == 225000.0);
 
 
 
         if (item1 < item2) {
-            cout << "Товар 1 дешевле товара 2." << endl;
+            cout << "РўРѕРІР°СЂ 1 РґРµС€РµРІР»Рµ С‚РѕРІР°СЂР° 2." << endl;
         }
         else if (item1 > item2) {
-            cout << "Товар 1 дороже товара 2." << endl;
+            cout << "РўРѕРІР°СЂ 1 РґРѕСЂРѕР¶Рµ С‚РѕРІР°СЂР° 2." << endl;
         }
         else if (item1 == item2) {
-            cout << "Товары стоят одинаково." << endl;
+            cout << "РўРѕРІР°СЂС‹ СЃС‚РѕСЏС‚ РѕРґРёРЅР°РєРѕРІРѕ." << endl;
         }
 
-        // Проверка операторов сравнения
+        // РџСЂРѕРІРµСЂРєР° РѕРїРµСЂР°С‚РѕСЂРѕРІ СЃСЂР°РІРЅРµРЅРёСЏ
         assert(item1 < item2);
         assert(!(item1 > item2));
         assert(!(item1 == item2));
@@ -223,7 +223,7 @@ int main() {
 
     }
     catch (const invalid_argument& e) {
-        cout << "Ошибка: " << e.what() << endl;
+        cout << "РћС€РёР±РєР°: " << e.what() << endl;
     }
 
     return 0;
