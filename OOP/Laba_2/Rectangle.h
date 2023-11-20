@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 class Rectangle {
 private:
     double x1, y1; // координаты левого нижнего угла
@@ -36,11 +38,11 @@ public:
     Rectangle getUnion(const Rectangle& other) const;
 
     // Перегрузка операций ввода/вывода
-    friend std::istream& operator>>(std::istream& in, Rectangle& rectangle);
-    friend std::ostream& operator<<(std::ostream& out, const Rectangle& rectangle);
+    friend istream& operator>>(istream& in, Rectangle& rectangle);
+    friend ostream& operator<<(ostream& out, const Rectangle& rectangle);
 
     // Метод преобразования в строку
-    std::string toString() const;
+    string toString() const;
 
 };
 

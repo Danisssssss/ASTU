@@ -13,6 +13,8 @@ int main() {
 
         // Проверки с использованием assert
         assert(rect1.calculateArea() == 25.0);
+        assert(rect1.calculatePerimeter() == 20.0);
+        assert(rect2.calculateArea() == 36.0);
         assert(rect2.calculatePerimeter() == 24.0);
 
         // Вывод параметров прямоугольников
@@ -21,6 +23,8 @@ int main() {
 
         // Вычисление и вывод площади и периметра
         cout << "Площадь прямоугольника 1: " << rect1.calculateArea() << endl;
+        cout << "Периметр прямоугольника 1: " << rect1.calculatePerimeter() << endl;
+        cout << "Площадь прямоугольника 2: " << rect2.calculateArea() << endl;
         cout << "Периметр прямоугольника 2: " << rect2.calculatePerimeter() << endl;
 
         // Перемещение и изменение размеров прямоугольника
