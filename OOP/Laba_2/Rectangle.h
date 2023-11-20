@@ -5,41 +5,41 @@
 
 class Rectangle {
 private:
-    double x1, y1; // координаты левого нижнего угла
-    double x2, y2; // координаты правого верхнего угла
+    double x1, y1; // РєРѕРѕСЂРґРёРЅР°С‚С‹ Р»РµРІРѕРіРѕ РЅРёР¶РЅРµРіРѕ СѓРіР»Р°
+    double x2, y2; // РєРѕРѕСЂРґРёРЅР°С‚С‹ РїСЂР°РІРѕРіРѕ РІРµСЂС…РЅРµРіРѕ СѓРіР»Р°
 
 public:
-    // Конструкторы
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
     Rectangle();
     Rectangle(double x1, double y1, double x2, double y2);
 
-    // Методы для получения параметров прямоугольника
+    // РњРµС‚РѕРґС‹ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂРѕРІ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
     double getX1() const noexcept;
     double getY1() const noexcept;
     double getX2() const noexcept;
     double getY2() const noexcept;
 
-    // Методы для вычисления площади и периметра
+    // РњРµС‚РѕРґС‹ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ РїР»РѕС‰Р°РґРё Рё РїРµСЂРёРјРµС‚СЂР°
     double calculateArea() const noexcept;
     double calculatePerimeter() const noexcept;
 
-    // Методы для перемещения, изменения размеров и сравнения
+    // РњРµС‚РѕРґС‹ РґР»СЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ, РёР·РјРµРЅРµРЅРёСЏ СЂР°Р·РјРµСЂРѕРІ Рё СЃСЂР°РІРЅРµРЅРёСЏ
     void move(double dx, double dy);
     void resize(double dw, double dh);
     bool operator==(const Rectangle& other) const noexcept;
     bool operator<(const Rectangle& other) const noexcept;
 
-    // Метод для получения прямоугольника пересечения
+    // РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° РїРµСЂРµСЃРµС‡РµРЅРёСЏ
     Rectangle getIntersection(const Rectangle& other) const;
 
-    // Метод для объединения двух прямоугольников
+    // РњРµС‚РѕРґ РґР»СЏ РѕР±СЉРµРґРёРЅРµРЅРёСЏ РґРІСѓС… РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєРѕРІ
     Rectangle getUnion(const Rectangle& other) const;
 
-    // Перегрузка операций ввода/вывода
+    // РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С†РёР№ РІРІРѕРґР°/РІС‹РІРѕРґР°
     friend std::istream& operator>>(std::istream& in, Rectangle& rectangle);
     friend std::ostream& operator<<(std::ostream& out, const Rectangle& rectangle);
 
-    // Метод преобразования в строку
+    // РњРµС‚РѕРґ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РІ СЃС‚СЂРѕРєСѓ
     std::string toString() const;
 
 };
