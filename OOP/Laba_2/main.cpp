@@ -1,5 +1,6 @@
 #include "Rectangle.h"
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -9,6 +10,10 @@ int main() {
         // Создание объектов класса Rectangle
         Rectangle rect1(0, 0, 5, 5);
         Rectangle rect2(2, 2, 8, 8);
+
+        // Проверки с использованием assert
+        assert(rect1.calculateArea() == 25.0);
+        assert(rect2.calculatePerimeter() == 24.0);
 
         // Вывод параметров прямоугольников
         cout << "Прямоугольник 1: " << rect1 << endl;
@@ -21,6 +26,10 @@ int main() {
         // Перемещение и изменение размеров прямоугольника
         rect1.move(2, 3);
         rect2.resize(3, 2);
+
+        // Проверки с использованием assert после изменений
+        assert(rect1.getX1() == 2.0);
+        assert(rect2.getY2() == 10.0);
 
         // Вывод измененных параметров
         cout << "Перемещенный прямоугольник 1: " << rect1 << endl;
